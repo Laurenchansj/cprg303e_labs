@@ -9,6 +9,8 @@ import {
   FlatList,
 } from 'react-native';
 import MyComp from './my-comp';
+import ToDoList from './ToDoList';
+import ToDoForm from './ToDoForm';
 import React, {useState} from 'react';
 
 function App(): JSX.Element {
@@ -35,16 +37,19 @@ function App(): JSX.Element {
   };
   return (
     <ScrollView style={styles.container}>
-      <Text style={dynamicStyles}>Hello World</Text>
-      <MyComp />
+      {/* <Text style={dynamicStyles}>Hello World</Text> */}
+      {/* <MyComp /> */}
       <Image source={require('./myPic.jpg')} style={styles.image} />
-      <TextInput
+      {/* <TextInput
         placeholder="Please enter your name."
         value={inputText}
         onChangeText={handleTextInput}
-      />
-      <Button title="A button!" onPress={handlePress} />
+      /> */}
+      {/* <Button title="A button!" onPress={handlePress} /> */}
       {/* <FlatList data={data} renderItem={renderItem} /> */}
+      <Text style={dynamicStyles}>My To Do List</Text>
+      <ToDoForm />
+      <ToDoList />
     </ScrollView>
   );
 }
@@ -56,8 +61,11 @@ const styles = StyleSheet.create({
     //alignItems: 'center', // only work when using <View>, use <ScrollView> cannot use alignItems
   },
   text: {
-    fontSize: 20,
+    fontSize: 30,
     color: 'black',
+    // margin: 10,
+    marginTop: 20,
+    textAlign: 'center',
   },
   textRed: {
     fontSize: 20,
@@ -66,6 +74,8 @@ const styles = StyleSheet.create({
   image: {
     width: 240,
     height: 150,
+    left: 85,
+    //alignItems: 'center',
     // width: 200,
     // height: 150,
   },
