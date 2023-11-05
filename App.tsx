@@ -15,6 +15,11 @@ import React, {useState} from 'react';
 
 function App(): JSX.Element {
   const [inputText, setInputText] = useState('');
+  const [tasks, setTasks] = useState([
+    'Do laundry',
+    'Go to gym',
+    'Walk dog'
+  ]);
 
   let condition = true;
 
@@ -35,6 +40,8 @@ function App(): JSX.Element {
   const handlePress = () => {
     // some code
   };
+
+
   return (
     <ScrollView style={styles.container}>
       {/* <Text style={dynamicStyles}>Hello World</Text> */}
@@ -49,7 +56,8 @@ function App(): JSX.Element {
       {/* <FlatList data={data} renderItem={renderItem} /> */}
       <Text style={dynamicStyles}>My To Do List</Text>
       <ToDoForm />
-      <ToDoList />
+      <View style={styles.line}></View>
+      <ToDoList tasks={tasks}/>
     </ScrollView>
   );
 }
@@ -78,6 +86,11 @@ const styles = StyleSheet.create({
     //alignItems: 'center',
     // width: 200,
     // height: 150,
+  },
+  line: {
+    height: 1.2,
+    backgroundColor: 'lightgray',
+
   },
 });
 
