@@ -8,18 +8,14 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
-import MyComp from './my-comp';
+// import MyComp from './my-comp';
 import ToDoList from './ToDoList';
 import ToDoForm from './ToDoForm';
 import React, {useState} from 'react';
 
-function App(): JSX.Element {
-  const [inputText, setInputText] = useState('');
-  const [tasks, setTasks] = useState([
-    'Do laundry',
-    'Go to gym',
-    'Walk dog'
-  ]);
+function App() {
+  // const [inputText, setInputText] = useState('');
+  const [tasks, setTasks] = useState(['Do laundry', 'Go to gym', 'Walk dog']);
 
   let condition = true;
 
@@ -33,14 +29,20 @@ function App(): JSX.Element {
 
   const renderItem = ({...item}) => <Text> {item.text} </Text>;
 
-  const handleTextInput = (text: React.SetStateAction<string>) => {
-    setInputText(text);
-  };
+  // const handleTextInput = () => {
+  //   setInputText('');
+  // };
 
-  const handlePress = () => {
-    // some code
+  // const handlePress = () => {
+  //   // some code
+  // };
+  const addTask = taskText => {
+    if (tasks.includes(taskText)) {
+      alert('Task already exists!');
+    } else {
+      setTasks([...tasks, taskText]);
+    }
   };
-
 
   return (
     <ScrollView style={styles.container}>
@@ -55,9 +57,13 @@ function App(): JSX.Element {
       {/* <Button title="A button!" onPress={handlePress} /> */}
       {/* <FlatList data={data} renderItem={renderItem} /> */}
       <Text style={dynamicStyles}>My To Do List</Text>
-      <ToDoForm />
+      <ToDoForm
+        addTask={addTask}
+        // value={inputText}
+        // onChangeText={handleTextInput}
+      />
       <View style={styles.line}></View>
-      <ToDoList tasks={tasks}/>
+      <ToDoList tasks={tasks} />
     </ScrollView>
   );
 }
@@ -90,7 +96,6 @@ const styles = StyleSheet.create({
   line: {
     height: 1.2,
     backgroundColor: 'lightgray',
-
   },
 });
 
