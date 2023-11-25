@@ -9,13 +9,19 @@ import {
   FlatList,
 } from 'react-native';
 // import MyComp from './my-comp';
-import ToDoList from './ToDoList';
-import ToDoForm from './ToDoForm';
+import ToDoList from './src/components/ToDoList';
+import ToDoForm from './src/components/ToDoForm';
+import HomeScreen from './src/screens/HomeScreen';
+import AboutScreen from './src/screens/AboutScreen';
 import React, {useState} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 function App() {
   // const [inputText, setInputText] = useState('');
   const [tasks, setTasks] = useState(['Do laundry', 'Go to gym', 'Walk dog']);
+
+  const Stack = createNativeStackNavigator();
 
   let condition = true;
 
@@ -45,26 +51,32 @@ function App() {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      {/* <Text style={dynamicStyles}>Hello World</Text> */}
-      {/* <MyComp /> */}
-      <Image source={require('./myPic.jpg')} style={styles.image} />
-      {/* <TextInput
+    <NavigationContainer>
+      <ScrollView style={styles.container}>
+        {/* <Text style={dynamicStyles}>Hello World</Text> */}
+        {/* <MyComp /> */}
+        <Image source={require('./myPic.jpg')} style={styles.image} />
+        {/* <TextInput
         placeholder="Please enter your name."
         value={inputText}
         onChangeText={handleTextInput}
       /> */}
-      {/* <Button title="A button!" onPress={handlePress} /> */}
-      {/* <FlatList data={data} renderItem={renderItem} /> */}
-      <Text style={dynamicStyles}>My To Do List</Text>
-      <ToDoForm
-        addTask={addTask}
-        // value={inputText}
-        // onChangeText={handleTextInput}
-      />
-      <View style={styles.line}></View>
-      <ToDoList tasks={tasks} />
-    </ScrollView>
+        {/* <Button title="A button!" onPress={handlePress} /> */}
+        {/* <FlatList data={data} renderItem={renderItem} /> */}
+        <Text style={dynamicStyles}>My To Do List</Text>
+        <ToDoForm
+          addTask={addTask}
+          // value={inputText}
+          // onChangeText={handleTextInput}
+        />
+        <View style={styles.line}></View>
+        <ToDoList tasks={tasks} />
+      </ScrollView>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
